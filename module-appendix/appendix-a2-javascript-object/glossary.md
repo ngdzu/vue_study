@@ -1,0 +1,26 @@
+# Glossary: JavaScript Object Mechanics
+
+- Prototype: The object used as a fallback during property lookup via the `[[Prototype]]` chain.
+- Constructor: Function or `class` used with `new` to create instances and set prototypes.
+- Instance: Object created from a constructor/class; inherits from its prototype.
+- Inheritance: Mechanism where objects delegate property/method lookup to their prototype chain.
+- `super`: Keyword to refer to parent prototype methods inside class methods.
+- Own Property: Property directly on the object (not via prototype).
+- Enumerable: Descriptor flag controlling whether a property appears in `for...in`, `Object.keys`.
+- Writable: Descriptor flag controlling assignment ability for a property’s value.
+- Configurable: Descriptor flag controlling redefinition and deletion of a property.
+- Getter/Setter: Accessor properties that run functions on read/write.
+- Spread Operator (`...`): Syntax to unpack object properties into a new object (shallow clone).
+- Destructuring: Syntax to extract properties from an object into named variables.
+- `Object.assign(target, ...sources)`: Copies enumerable properties from sources to target.
+- Shallow Copy: Copy where nested objects are still referenced (not deeply cloned).
+- Reflection: Uniform function-based object operations via `Reflect.*`.
+- Proxy: Wrapper that intercepts fundamental operations on a target.
+- Trap: A handler method on a proxy (e.g., `get`, `set`, `has`).
+- Target: The underlying object/function wrapped by a proxy.
+- Handler: Object providing trap implementations for the proxy.
+- Revocable Proxy: A proxy that can be disabled later via `revoke()`.
+- `Object.create(proto)`: Creates an object with a specified prototype.
+- `Object.hasOwn(obj, key)`: Checks for an own property (no prototype chain).
+- Property Descriptor: Object describing property attributes (value, enumerable, etc.).
+- Own Keys: All own property keys (strings + symbols), from `Reflect.ownKeys`.
