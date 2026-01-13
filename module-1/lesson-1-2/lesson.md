@@ -1189,21 +1189,6 @@ watchEffect(() => {
 })
 ```
 
----
-
-## Verification Checklist
-
-- You understand the difference between `ref()` and `reactive()`
-- You can use `computed()` for derived state
-- You know when to use `watch()` vs `watchEffect()`
-- You can implement two-way binding with `v-model`
-- You avoid common reactivity pitfalls (destructuring, reassignment)
-- You can type reactive data with TypeScript
-
-When all boxes are checked, proceed to the sample project and exercises.
- 
----
-
 ## Mounting & Unmounting
 
 "Mount" means a component is created, rendered, and inserted into the DOM. "Unmount" means it is removed and destroyed.
@@ -1265,3 +1250,15 @@ onMounted(() => {
 ---
 
 ## Verification Checklist
+
+- You understand the difference between `ref()` and `reactive()`
+- You can use `computed()` for derived state
+- You know when to use `watch()` vs `watchEffect()`
+- You can implement two-way binding with `v-model`
+- You avoid common reactivity pitfalls (destructuring, reassignment)
+- You can type reactive data with TypeScript
+
+When all boxes are checked, proceed to the sample project and exercises.
+ 
+---
+
