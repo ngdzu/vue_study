@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Forms Demo - Interactive Examples</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        input[type="date"],
+        input[type="time"],
+        input[type="range"],
+        input[type="search"],
+        input[type="url"],
+        input[type="tel"],
+        input[type="color"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        input:invalid {
+            border-color: #ef5350;
+        }
+
+        input:valid {
+            border-color: #66bb6a;
+        }
+
+        textarea {
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .input-group input[type="text"],
+        .input-group input[type="email"] {
+            flex: 1;
+        }
+
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label,
+        .radio-item label {
+            margin-bottom: 0;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button[type="submit"] {
+            background: #667eea;
+            color: white;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        button[type="reset"] {
+            background: #f5f5f5;
+            color: #333;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+
+        button[type="reset"]:hover {
+            background: #e0e0e0;
+        }
+
+        button[type="button"] {
+            background: #764ba2;
+            color: white;
+        }
+
+        button[type="button"]:hover {
+            background: #6a3f95;
+        }
+
+        .fieldset-group {
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        legend {
+            font-weight: 600;
+            color: #333;
+            padding: 0 0.5rem;
+        }
+
+        .fieldset-group .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .fieldset-group .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        input[type="range"] {
+            padding: 0;
+            height: 6px;
+        }
+
+        input[type="color"] {
+            padding: 4px;
+            height: 50px;
+        }
+
+        .output {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #333;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .demo-note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: #856404;
+        }
+
+        .demo-note strong {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .sections {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 1.5rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .section h2 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 HTML Forms Interactive Demo</h1>
+            <p class="subtitle">See all form elements, input types, and validation in action</p>
+        </header>
+
+        <div class="sections">
+            <!-- 1. Basic Form Structure -->
+            <div class="section">
+                <h2>1. Basic Form Structure</h2>
+                <div class="demo-note">
+                    <strong>ℹ️ Try it:</strong> Fill in the fields and watch the output update. Click "Show Values" to
+                    see the submitted data.
+                </div>
+                <form id="basicForm">
+                    <div class="fieldset-group">
+                        <legend>Contact Information</legend>
+
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input id="name" type="text" name="name" placeholder="John Doe" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" name="email" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="fieldset-group">
+                        <legend>Message</legend>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Enter your message..."
+                                required></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit">Submit</button>
+                    <button type="reset">Clear</button>
+                </form>
+                <div id="basicOutput" class="output" style="display: none;"></div>
+            </div>
+
+            <!-- 2. Input Types -->
+            <div class="section">
+                <h2>2. Input Types Demo</h2>
+                <div class="demo-note">
+                    <strong>✨ Try it:</strong> Different input types have different appearances and validation!
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="textInput">Text Input</label>
+                        <input id="textInput" type="text" placeholder="Regular text">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emailInput">Email Input</label>
+                        <input id="emailInput" type="email" placeholder="user@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numberInput">Number Input</label>
+                        <input id="numberInput" type="number" min="0" max="100" step="5" value="50">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateInput">Date Input</label>
+                        <input id="dateInput" type="date">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="timeInput">Time Input</label>
+                        <input id="timeInput" type="time">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="colorInput">Color Picker</label>
+                        <input id="colorInput" type="color" value="#667eea">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="urlInput">URL Input</label>
+                        <input id="urlInput" type="url" placeholder="https://example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telInput">Telephone Input</label>
+                        <input id="telInput" type="tel" placeholder="(555) 123-4567">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="searchInput">Search Input</label>
+                        <input id="searchInput" type="search" placeholder="Search...">
+                    </div>
+                </form>
+            </div>
+
+            <!-- 3. Range and Validation -->
+            <div class="section">
+                <h2>3. Range & Validation</h2>
+                <div class="demo-note">
+                    <strong>🎚️ Try it:</strong> Drag the range slider or type a number. Watch validation in real-time!
+                </div>
+                <form id="rangeForm">
+                    <div class="form-group">
+                        <label for="priceRange">Price Range: <span id="priceValue">50</span></label>
+                        <input id="priceRange" type="range" min="0" max="200" value="50" step="10">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ageInput">Age (18-100)</label>
+                        <input id="ageInput" type="number" min="18" max="100" placeholder="Enter your age">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="usernameInput">Username (3-20 chars)</label>
+                        <input id="usernameInput" type="text" minlength="3" maxlength="20"
+                            placeholder="alphanumeric only">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passwordInput">Password</label>
+                        <input id="passwordInput" type="password" minlength="8" placeholder="Min 8 characters">
+                    </div>
+
+                    <button type="submit">Validate</button>
+                </form>
+                <div id="rangeOutput" class="output" style="display: none;"></div>
+            </div>
+
+            <!-- 4. Checkboxes & Multiple Selections -->
+            <div class="section">
+                <h2>4. Checkboxes (Multiple)</h2>
+                <div class="demo-note">
+                    <strong>☑️ Try it:</strong> Select multiple options. Each checkbox can be selected independently.
+                </div>
+                <form id="checkboxForm">
+                    <div class="form-group">
+                        <label>Skills</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input id="vue" type="checkbox" name="skills" value="Vue">
+                                <label for="vue">Vue 3</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input id="react" type="checkbox" name="skills" value="React">
+                                <label for="react">React</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input id="angular" type="checkbox" name="skills" value="Angular">
+                                <label for="angular">Angular</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input id="svelte" type="checkbox" name="skills" value="Svelte">
+                                <label for="svelte">Svelte</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-item">
+                            <input id="agree" type="checkbox" name="agree" value="yes">
+                            <label for="agree">I agree to the terms and conditions</label>
+                        </div>
+                    </div>
+
+                    <button type="submit">Show Selected</button>
+                </form>
+                <div id="checkboxOutput" class="output" style="display: none;"></div>
+            </div>
+
+            <!-- 5. Radio Buttons (Single Selection) -->
+            <div class="section">
+                <h2>5. Radio Buttons (Single)</h2>
+                <div class="demo-note">
+                    <strong>⭕ Try it:</strong> Only ONE radio button per group can be selected at a time.
+                </div>
+                <form id="radioForm">
+                    <div class="fieldset-group">
+                        <legend>Preferred Contact Method</legend>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input id="contactEmail" type="radio" name="contact" value="email">
+                                <label for="contactEmail">Email</label>
+                            </div>
+                            <div class="radio-item">
+                                <input id="contactPhone" type="radio" name="contact" value="phone">
+                                <label for="contactPhone">Phone</label>
+                            </div>
+                            <div class="radio-item">
+                                <input id="contactSms" type="radio" name="contact" value="sms">
+                                <label for="contactSms">SMS</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fieldset-group">
+                        <legend>Experience Level</legend>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input id="beginner" type="radio" name="experience" value="beginner">
+                                <label for="beginner">Beginner</label>
+                            </div>
+                            <div class="radio-item">
+                                <input id="intermediate" type="radio" name="experience" value="intermediate">
+                                <label for="intermediate">Intermediate</label>
+                            </div>
+                            <div class="radio-item">
+                                <input id="advanced" type="radio" name="experience" value="advanced">
+                                <label for="advanced">Advanced</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit">Show Selection</button>
+                </form>
+                <div id="radioOutput" class="output" style="display: none;"></div>
+            </div>
+
+            <!-- 6. Select Dropdowns -->
+            <div class="section">
+                <h2>6. Select Dropdowns</h2>
+                <div class="demo-note">
+                    <strong>🔽 Try it:</strong> Simple dropdowns with single or multiple selections.
+                </div>
+                <form id="selectForm">
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <select id="country" name="country">
+                            <option value="">-- Select a country --</option>
+                            <option value="usa">United States</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="canada">Canada</option>
+                            <option value="australia">Australia</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cuisine">Cuisine Type (Grouped)</label>
+                        <select id="cuisine" name="cuisine">
+                            <optgroup label="Asian">
+                                <option value="thai">Thai</option>
+                                <option value="chinese">Chinese</option>
+                                <option value="japanese">Japanese</option>
+                            </optgroup>
+                            <optgroup label="European">
+                                <option value="italian">Italian</option>
+                                <option value="french">French</option>
+                                <option value="spanish">Spanish</option>
+                            </optgroup>
+                            <optgroup label="American">
+                                <option value="burger">Burger</option>
+                                <option value="bbq">BBQ</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="frameworks">Frameworks (Multiple)</label>
+                        <select id="frameworks" name="frameworks" multiple size="4">
+                            <option value="vue">Vue</option>
+                            <option value="react">React</option>
+                            <option value="angular">Angular</option>
+                            <option value="svelte">Svelte</option>
+                            <option value="solid">Solid</option>
+                        </select>
+                    </div>
+
+                    <button type="submit">Show Selections</button>
+                </form>
+                <div id="selectOutput" class="output" style="display: none;"></div>
+            </div>
+
+            <!-- 7. Datalist (Autocomplete) -->
+            <div class="section">
+                <h2>7. Datalist (Autocomplete)</h2>
+                <div class="demo-note">
+                    <strong>🔍 Try it:</strong> Start typing to see suggestions, or click the dropdown arrow.
+                </div>
+                <form id="datalistForm">
+                    <div class="form-group">
+                        <label for="pet">Your Pet</label>
+                        <input id="pet" type="text" name="pet" list="pet-list" placeholder="Type pet name or select">
+                        <datalist id="pet-list">
+                            <option value="Cat">
+                            <option value="Dog">
+                            <option value="Parrot">
+                            <option value="Hamster">
+                            <option value="Rabbit">
+                            <option value="Fish">
+                        </datalist>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input id="city" type="text" name="city" list="city-list" placeholder="Type city name">
+                        <datalist id="city-list">
+                            <option value="New York">
+                            <option value="Los Angeles">
+                            <option value="Chicago">
+                            <option value="Houston">
+                            <option value="Phoenix">
+                        </datalist>
+                    </div>
+
+                    <button type="submit">Show Values</button>
+                </form>
+                <div id="datalistOutput" class="output" style="display: none;"></div>
+            </div>
+
+            <!-- 8. File Upload -->
+            <div class="section">
+                <h2>8. File Upload</h2>
+                <div class="demo-note">
+                    <strong>📁 Try it:</strong> Select single or multiple files. Check file info below.
+                </div>
+                <form id="fileForm">
+                    <div class="form-group">
+                        <label for="singleFile">Single File</label>
+                        <input id="singleFile" type="file" accept="image/*">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="multipleFiles">Multiple Files</label>
+                        <input id="multipleFiles" type="file" multiple accept="image/*,.pdf">
+                    </div>
+
+                    <button type="button" id="fileBtn">Show File Info</button>
+                </form>
+                <div id="fileOutput" class="output" style="display: none;"></div>
+            </div>
+
+            <!-- 9. Disabled & Readonly -->
+            <div class="section">
+                <h2>9. Disabled & Readonly</h2>
+                <div class="demo-note">
+                    <strong>🔒 Try it:</strong> Disabled fields can't be edited. Readonly can't be edited but still
+                    submit.
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="disabledField">Disabled Field</label>
+                        <input id="disabledField" type="text" value="Can't interact with this" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="readonlyField">Readonly Field</label>
+                        <input id="readonlyField" type="text" value="Can view but not edit" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="enabledField">Enabled Field</label>
+                        <input id="enabledField" type="text" value="This one works normally">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-item">
+                            <input id="disabledCheck" type="checkbox" disabled>
+                            <label for="disabledCheck">Disabled Checkbox</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 10. Validation States -->
+            <div class="section">
+                <h2>10. Validation States</h2>
+                <div class="demo-note">
+                    <strong>✅ Try it:</strong> Valid inputs show green, invalid show red. Browser validates
+                    automatically.
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="validEmail">Valid Email (try entering email)</label>
+                        <input id="validEmail" type="email" placeholder="user@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="validUrl">Valid URL</label>
+                        <input id="validUrl" type="url" placeholder="https://example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="requiredField">Required Field</label>
+                        <input id="requiredField" type="text" required placeholder="This is required">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="patternField">Pattern Match (alphanumeric only)</label>
+                        <input id="patternField" type="text" pattern="[A-Za-z0-9]+" title="Letters and numbers only">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="minMaxField">Min/Max (0-10)</label>
+                        <input id="minMaxField" type="number" min="0" max="10" placeholder="0 to 10">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Form 1: Basic Form
+        document.getElementById('basicForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            document.getElementById('basicOutput').style.display = 'block';
+            document.getElementById('basicOutput').textContent = JSON.stringify(data, null, 2);
+        });
+
+        // Form 2: Range Slider
+        document.getElementById('priceRange').addEventListener('input', (e) => {
+            document.getElementById('priceValue').textContent = e.target.value;
+        });
+
+        document.getElementById('rangeForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const age = document.getElementById('ageInput').value;
+            const username = document.getElementById('usernameInput').value;
+            const password = document.getElementById('passwordInput').value;
+
+            const output = {
+                age: age || 'not entered',
+                username: username || 'not entered',
+                password: password ? '●'.repeat(password.length) : 'not entered',
+                ageValid: age >= 18 && age <= 100,
+                usernameValid: username.length >= 3 && username.length <= 20,
+                passwordValid: password.length >= 8
+            };
+
+            document.getElementById('rangeOutput').style.display = 'block';
+            document.getElementById('rangeOutput').textContent = JSON.stringify(output, null, 2);
+        });
+
+        // Form 3: Checkboxes
+        document.getElementById('checkboxForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const skills = Array.from(document.querySelectorAll('input[name="skills"]:checked'))
+                .map(el => el.value);
+            const agree = document.getElementById('agree').checked;
+
+            const output = {
+                selectedSkills: skills.length > 0 ? skills : 'None selected',
+                agreedToTerms: agree
+            };
+
+            document.getElementById('checkboxOutput').style.display = 'block';
+            document.getElementById('checkboxOutput').textContent = JSON.stringify(output, null, 2);
+        });
+
+        // Form 4: Radio
+        document.getElementById('radioForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const contact = document.querySelector('input[name="contact"]:checked')?.value || 'not selected';
+            const experience = document.querySelector('input[name="experience"]:checked')?.value || 'not selected';
+
+            const output = {
+                preferredContact: contact,
+                experienceLevel: experience
+            };
+
+            document.getElementById('radioOutput').style.display = 'block';
+            document.getElementById('radioOutput').textContent = JSON.stringify(output, null, 2);
+        });
+
+        // Form 5: Select
+        document.getElementById('selectForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const country = document.getElementById('country').value;
+            const cuisine = document.getElementById('cuisine').value;
+            const frameworks = Array.from(document.getElementById('frameworks').selectedOptions)
+                .map(el => el.value);
+
+            const output = {
+                country: country || 'not selected',
+                cuisine: cuisine || 'not selected',
+                frameworks: frameworks.length > 0 ? frameworks : 'None selected'
+            };
+
+            document.getElementById('selectOutput').style.display = 'block';
+            document.getElementById('selectOutput').textContent = JSON.stringify(output, null, 2);
+        });
+
+        // Form 6: Datalist
+        document.getElementById('datalistForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const pet = document.getElementById('pet').value;
+            const city = document.getElementById('city').value;
+
+            const output = {
+                pet: pet || 'not entered',
+                city: city || 'not entered'
+            };
+
+            document.getElementById('datalistOutput').style.display = 'block';
+            document.getElementById('datalistOutput').textContent = JSON.stringify(output, null, 2);
+        });
+
+        // Form 7: File Upload
+        document.getElementById('fileBtn').addEventListener('click', () => {
+            const singleFile = document.getElementById('singleFile').files[0];
+            const multipleFiles = document.getElementById('multipleFiles').files;
+
+            const singleInfo = singleFile ? {
+                name: singleFile.name,
+                size: `${(singleFile.size / 1024).toFixed(2)} KB`,
+                type: singleFile.type
+            } : 'No file selected';
+
+            const multipleInfo = Array.from(multipleFiles).map(file => ({
+                name: file.name,
+                size: `${(file.size / 1024).toFixed(2)} KB`,
+                type: file.type
+            }));
+
+            const output = {
+                singleFile: singleInfo,
+                multipleFiles: multipleInfo.length > 0 ? multipleInfo : 'No files selected'
+            };
+
+            document.getElementById('fileOutput').style.display = 'block';
+            document.getElementById('fileOutput').textContent = JSON.stringify(output, null, 2);
+        });
+    </script>
+</body>
+
+</html>

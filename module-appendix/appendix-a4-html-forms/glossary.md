@@ -1,0 +1,31 @@
+# Glossary: HTML Forms
+
+- **Form**: HTML container element that collects and submits user data.
+- **Input**: Form field element for single-line text, numbers, dates, files, etc.
+- **Textarea**: Multi-line text input field.
+- **Label**: Text associated with a form field via `for` attribute; improves accessibility.
+- **Fieldset**: Groups related form fields semantically; can be disabled as a unit.
+- **Legend**: Title/description for a fieldset.
+- **Select**: Dropdown list allowing single or multiple selection.
+- **Optgroup**: Groups related options within a select dropdown.
+- **Datalist**: Provides autocomplete suggestions for an input field.
+- **Button types**: `submit` (submits form), `reset` (clears form), `button` (custom action).
+- **Action**: Form attribute specifying URL to submit data to.
+- **Method**: Form attribute specifying GET or POST; POST for sensitive data.
+- **Name**: Attribute that identifies form field in submitted data.
+- **ID**: Unique identifier for form element; used with `<label for="id">`.
+- **Required**: Attribute marking field as mandatory; browser validates.
+- **Pattern**: Regex pattern for text validation; browser validates.
+- **Minlength/Maxlength**: Character count constraints.
+- **Min/Max**: Numeric or date value constraints.
+- **Step**: Increment value for numeric/date inputs.
+- **Disabled**: Field cannot be interacted with or submitted.
+- **Readonly**: Field displays value but cannot be edited.
+- **Novalidate**: Form attribute disabling browser validation.
+- **FormData**: JavaScript API for collecting and serializing form values.
+- **Validation attributes**: HTML5 attributes (`required`, `pattern`, `min`, `max`) for native validation.
+- **Aria-label**: Screen reader label (use when no visible label).
+- **Aria-describedby**: Links field to description element for screen readers.
+- **Aria-invalid**: Indicates field error state for screen readers.
+- **Tabindex**: Controls tab order navigation; 0 = natural order, -1 = not tabbable.
+- **Progressive enhancement**: Core functionality works without JavaScript; JS enhances experience.
