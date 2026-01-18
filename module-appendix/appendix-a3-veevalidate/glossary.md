@@ -1,0 +1,22 @@
+# Glossary: VeeValidate
+
+- **VeeValidate**: Form validation library for Vue that automates error handling and field state.
+- **useForm**: Composable that initializes a form, manages submission, and provides error tracking.
+- **useField**: Composable that binds a single form field to validation schema and provides value/errors.
+- **Validation Schema**: Object (Yup/Zod) defining rules for all form fields.
+- **Yup**: Popular schema validation library (alternative: Zod).
+- **Zod**: TypeScript-first schema validation (lightweight alternative to Yup).
+- **handleSubmit**: Function wrapper that validates all fields before running submission logic.
+- **errors**: Object containing field errors, keyed by field name.
+- **values**: Current form values, updated in real-time with v-model.
+- **validateField**: Function to manually validate a specific field.
+- **setFieldError**: Function to manually set an error on a field.
+- **isSubmitting**: Boolean indicating whether form submission is in progress.
+- **touched**: Field state indicating if user has interacted with it.
+- **dirty**: Field state indicating if value has changed from initial.
+- **meta**: Field metadata including `touched`, `dirty`, `pending` (for async validation).
+- **Async Validation**: Validation rule that calls an API (e.g., checking email uniqueness).
+- **Custom Validator**: User-defined validation rule using `.test()` method.
+- **Multi-Step Form**: Form split into sections with progressive validation.
+- **Form Wrapper Component**: Reusable component encapsulating VeeValidate logic (e.g., `FormField.vue`).
+- **Schema Composition**: Combining multiple validation schemas for nested/complex forms.

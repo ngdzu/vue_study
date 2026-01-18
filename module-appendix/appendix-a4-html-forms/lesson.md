@@ -137,61 +137,61 @@ HTML forms are the foundation of web interaction. Understanding them deeply enab
 
 ### 2.3 Input attributes cheatsheet
 
-| Attribute | Works With | Purpose | Example |
-|-----------|-----------|---------|---------|
-| `type` | all | Defines input kind | `type="email"` |
-| `name` | all | Field identifier in form submission | `name="username"` |
-| `id` | all | Unique element identifier (for labels) | `id="user"` |
-| `value` | all | Pre-filled or default value | `value="John"` |
-| `placeholder` | text, email, password, search, tel, url | Gray hint text | `placeholder="Enter email"` |
-| `required` | all | Field mandatory | `required` |
-| `disabled` | all | Field cannot be edited/submitted | `disabled` |
-| `readonly` | all | Field displays but not editable | `readonly` |
-| `minlength` | text, email, password, search, tel, url, textarea | Minimum characters | `minlength="3"` |
-| `maxlength` | text, email, password, search, tel, url, textarea | Maximum characters | `maxlength="50"` |
-| `min` | number, date, time, datetime-local, month, week, range | Minimum value | `min="0"` or `min="2024-01-01"` |
-| `max` | number, date, time, datetime-local, month, week, range | Maximum value | `max="100"` or `max="2024-12-31"` |
-| `step` | number, date, time, datetime-local, month, week, range | Increment/decrement value | `step="5"` or `step="900"` |
-| `pattern` | text, email, password, search, tel, url | Regex validation | `pattern="[A-Za-z0-9]+"` |
-| `title` | all | Tooltip on hover (especially for pattern) | `title="Letters and numbers only"` |
-| `autocomplete` | all | Browser autocomplete hint | `autocomplete="email"` or `autocomplete="off"` |
-| `autofocus` | all | Focus on page load | `autofocus` |
-| `multiple` | file, email | Allow multiple selections/values | `multiple` |
-| `accept` | file | File types allowed | `accept="image/*"` or `accept=".jpg,.png"` |
-| `list` | text, email, password, search, tel, url, number, date, time, range | Links to `<datalist>` for suggestions | `list="pet-list"` |
-| `step` | all numeric types | Allowed increments | `step="0.01"` |
-| `rows` | textarea | Number of visible rows | `rows="5"` |
-| `cols` | textarea | Number of visible columns | `cols="40"` |
-| `wrap` | textarea | Text wrapping behavior | `wrap="hard"` or `wrap="soft"` |
-| `spellcheck` | text, textarea, email, search, tel, url | Enable spell check | `spellcheck="true"` |
-| `inputmode` | all | Mobile keyboard type | `inputmode="numeric"` or `inputmode="email"` |
-| `tabindex` | all | Tab order (0=normal, -1=skip, 1+=explicit) | `tabindex="1"` |
+| Attribute      | Works With                                                         | Purpose                                    | Example                                        |
+| -------------- | ------------------------------------------------------------------ | ------------------------------------------ | ---------------------------------------------- |
+| `type`         | all                                                                | Defines input kind                         | `type="email"`                                 |
+| `name`         | all                                                                | Field identifier in form submission        | `name="username"`                              |
+| `id`           | all                                                                | Unique element identifier (for labels)     | `id="user"`                                    |
+| `value`        | all                                                                | Pre-filled or default value                | `value="John"`                                 |
+| `placeholder`  | text, email, password, search, tel, url                            | Gray hint text                             | `placeholder="Enter email"`                    |
+| `required`     | all                                                                | Field mandatory                            | `required`                                     |
+| `disabled`     | all                                                                | Field cannot be edited/submitted           | `disabled`                                     |
+| `readonly`     | all                                                                | Field displays but not editable            | `readonly`                                     |
+| `minlength`    | text, email, password, search, tel, url, textarea                  | Minimum characters                         | `minlength="3"`                                |
+| `maxlength`    | text, email, password, search, tel, url, textarea                  | Maximum characters                         | `maxlength="50"`                               |
+| `min`          | number, date, time, datetime-local, month, week, range             | Minimum value                              | `min="0"` or `min="2024-01-01"`                |
+| `max`          | number, date, time, datetime-local, month, week, range             | Maximum value                              | `max="100"` or `max="2024-12-31"`              |
+| `step`         | number, date, time, datetime-local, month, week, range             | Increment/decrement value                  | `step="5"` or `step="900"`                     |
+| `pattern`      | text, email, password, search, tel, url                            | Regex validation                           | `pattern="[A-Za-z0-9]+"`                       |
+| `title`        | all                                                                | Tooltip on hover (especially for pattern)  | `title="Letters and numbers only"`             |
+| `autocomplete` | all                                                                | Browser autocomplete hint                  | `autocomplete="email"` or `autocomplete="off"` |
+| `autofocus`    | all                                                                | Focus on page load                         | `autofocus`                                    |
+| `multiple`     | file, email                                                        | Allow multiple selections/values           | `multiple`                                     |
+| `accept`       | file                                                               | File types allowed                         | `accept="image/*"` or `accept=".jpg,.png"`     |
+| `list`         | text, email, password, search, tel, url, number, date, time, range | Links to `<datalist>` for suggestions      | `list="pet-list"`                              |
+| `step`         | all numeric types                                                  | Allowed increments                         | `step="0.01"`                                  |
+| `rows`         | textarea                                                           | Number of visible rows                     | `rows="5"`                                     |
+| `cols`         | textarea                                                           | Number of visible columns                  | `cols="40"`                                    |
+| `wrap`         | textarea                                                           | Text wrapping behavior                     | `wrap="hard"` or `wrap="soft"`                 |
+| `spellcheck`   | text, textarea, email, search, tel, url                            | Enable spell check                         | `spellcheck="true"`                            |
+| `inputmode`    | all                                                                | Mobile keyboard type                       | `inputmode="numeric"` or `inputmode="email"`   |
+| `tabindex`     | all                                                                | Tab order (0=normal, -1=skip, 1+=explicit) | `tabindex="1"`                                 |
 
 ### 2.3.1 Input type reference
 
-| Type | Use Case | Example | Browser Validation |
-|------|----------|---------|-------------------|
-| `text` | Generic text | username, name | None |
-| `email` | Email address | user@example.com | Email format check |
-| `password` | Secret text (masked) | pwd123 | None |
-| `number` | Integer or decimal | 42, 3.14 | Number format + min/max |
-| `range` | Slider (0-100) | price slider | min/max/step validation |
-| `checkbox` | Single boolean or group | agree to terms | None |
-| `radio` | Single choice from group | gender: M/F/Other | None |
-| `date` | Date picker (YYYY-MM-DD) | 2024-01-15 | Date format + min/max |
-| `time` | Time picker (HH:MM) | 14:30 | Time format + min/max |
-| `datetime-local` | Date + time (no timezone) | 2024-01-15T14:30 | Format + min/max |
-| `month` | Month/year (YYYY-MM) | 2024-01 | Format + min/max |
-| `week` | Week of year (YYYY-Www) | 2024-W03 | Format + min/max |
-| `file` | File upload | document.pdf | Accepts MIME types |
-| `color` | Color picker (hex) | #FF5733 | Hex color validation |
-| `search` | Search query | "Vue 3 tutorial" | None (same as text) |
-| `tel` | Telephone number | (555) 123-4567 | None (no strict validation) |
-| `url` | Web URL | https://example.com | URL format check |
-| `submit` | Form submit button | text: "Send" | N/A |
-| `reset` | Form reset button | text: "Clear" | N/A |
-| `button` | Custom button | text: "Click me" | N/A |
-| `hidden` | Hidden field (not displayed) | csrf_token | N/A |
+| Type             | Use Case                     | Example             | Browser Validation          |
+| ---------------- | ---------------------------- | ------------------- | --------------------------- |
+| `text`           | Generic text                 | username, name      | None                        |
+| `email`          | Email address                | user@example.com    | Email format check          |
+| `password`       | Secret text (masked)         | pwd123              | None                        |
+| `number`         | Integer or decimal           | 42, 3.14            | Number format + min/max     |
+| `range`          | Slider (0-100)               | price slider        | min/max/step validation     |
+| `checkbox`       | Single boolean or group      | agree to terms      | None                        |
+| `radio`          | Single choice from group     | gender: M/F/Other   | None                        |
+| `date`           | Date picker (YYYY-MM-DD)     | 2024-01-15          | Date format + min/max       |
+| `time`           | Time picker (HH:MM)          | 14:30               | Time format + min/max       |
+| `datetime-local` | Date + time (no timezone)    | 2024-01-15T14:30    | Format + min/max            |
+| `month`          | Month/year (YYYY-MM)         | 2024-01             | Format + min/max            |
+| `week`           | Week of year (YYYY-Www)      | 2024-W03            | Format + min/max            |
+| `file`           | File upload                  | document.pdf        | Accepts MIME types          |
+| `color`          | Color picker (hex)           | #FF5733             | Hex color validation        |
+| `search`         | Search query                 | "Vue 3 tutorial"    | None (same as text)         |
+| `tel`            | Telephone number             | (555) 123-4567      | None (no strict validation) |
+| `url`            | Web URL                      | https://example.com | URL format check            |
+| `submit`         | Form submit button           | text: "Send"        | N/A                         |
+| `reset`          | Form reset button            | text: "Clear"       | N/A                         |
+| `button`         | Custom button                | text: "Click me"    | N/A                         |
+| `hidden`         | Hidden field (not displayed) | csrf_token          | N/A                         |
 
 ## 3) Validation Attributes
 
