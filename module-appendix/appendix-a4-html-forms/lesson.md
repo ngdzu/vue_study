@@ -135,6 +135,21 @@ HTML forms are the foundation of web interaction. Understanding them deeply enab
 <!-- Valid: 2024-06-15 ✅ -->
 ```
 
+### 2.2.1 `inputmode` (mobile keyboard hints)
+```html
+<!-- `inputmode` changes the keyboard layout on mobile; it does NOT validate input -->
+<input
+  type="tel"
+  name="phone"
+  inputmode="tel"
+  pattern="\+?[0-9\-\s()]{7,20}"
+  placeholder="+1 555-123-4567"
+  required
+>
+```
+
+> 💡 IMPORTANT: `inputmode` only influences the on-screen keyboard. Pair it with `pattern` (and `title`) if you want format hints or validation; use JavaScript filtering only when you must block specific characters.
+
 ### 2.3 Input attributes cheatsheet
 
 | Attribute      | Works With                                                         | Purpose                                    | Example                                        |
@@ -548,7 +563,76 @@ const emailError = computed(() => {
 </template>
 ```
 
-## 10) Practice Ideas
+## 10) Form Events
+
+### 10.1 Available events for form elements
+
+| Event         | Fires When                                      | Bubbles | Cancelable | Common Use                                     |
+| ------------- | ----------------------------------------------- | ------- | ---------- | ---------------------------------------------- |
+| `input`       | Value changes (typing, pasting, slider drag)    | Yes     | No         | Real-time validation, character counter        |
+| `change`      | Value changes AND element loses focus           | Yes     | No         | Save data after editing complete               |
+| `beforeinput` | Before input is modified                        | Yes     | Yes        | Prevent certain characters, format input       |
+| `focus`       | Element receives focus                          | No      | No         | Show hints, highlight field                    |
+| `blur`        | Element loses focus                             | No      | No         | Validate field, save draft                     |
+| `focusin`     | Element receives focus (bubbles unlike `focus`) | Yes     | No         | Delegated focus handling                       |
+| `focusout`    | Element loses focus (bubbles unlike `blur`)     | Yes     | No         | Delegated blur handling                        |
+| `submit`      | Form is submitted (on `<form>`, not inputs)     | Yes     | Yes        | Validate, send via fetch, prevent default      |
+| `reset`       | Form reset button clicked                       | Yes     | Yes        | Confirm before clearing, prevent default       |
+| `invalid`     | Input fails validation on submit                | No      | Yes        | Custom error messages, prevent default message |
+| `keydown`     | Key is pressed down                             | Yes     | Yes        | Keyboard shortcuts, prevent certain keys       |
+| `keyup`       | Key is released                                 | Yes     | Yes        | Trigger search, check input after key release  |
+| `click`       | Element is clicked                              | Yes     | Yes        | Toggle checkboxes, show/hide fields            |
+| `dblclick`    | Element is double-clicked                       | Yes     | Yes        | Select all text                                |
+| `select`      | Text is selected (text inputs/textarea)         | Yes     | No         | Copy selected text, show formatting toolbar    |
+| `cut`         | Content is cut (Ctrl+X)                         | Yes     | Yes        | Track changes, prevent cutting                 |
+| `copy`        | Content is copied (Ctrl+C)                      | Yes     | Yes        | Track copying, modify clipboard                |
+| `paste`       | Content is pasted (Ctrl+V)                      | Yes     | Yes        | Format pasted text, prevent pasting            |
+| `mouseenter`  | Mouse enters element (does not bubble)          | No      | No         | Show tooltips                                  |
+| `mouseleave`  | Mouse leaves element (does not bubble)          | No      | No         | Hide tooltips                                  |
+
+> 💡 IMPORTANT: Most commonly used for forms: `input`, `change`, `submit`, `blur`, `focus`.
+
+### 10.2 Event examples
+
+```ts
+// Real-time validation with 'input'
+input.addEventListener('input', (e) => {
+  console.log('Current value:', e.target.value)
+  // Validate as user types
+})
+
+// Save on 'change' (after editing complete)
+input.addEventListener('change', (e) => {
+  console.log('Final value:', e.target.value)
+  // Save to localStorage, send to API
+})
+
+// Prevent form submission with 'submit'
+form.addEventListener('submit', (e) => {
+  e.preventDefault()
+  // Custom validation, send via fetch
+})
+
+// Show hint on 'focus'
+input.addEventListener('focus', () => {
+  hint.style.display = 'block'
+})
+
+// Validate on 'blur'
+input.addEventListener('blur', () => {
+  if (!input.value) {
+    showError('This field is required')
+  }
+})
+
+// Custom error message with 'invalid'
+input.addEventListener('invalid', (e) => {
+  e.preventDefault() // Prevent default browser message
+  showCustomError('Please enter a valid email')
+})
+```
+
+## 11) Practice Ideas
 
 - Build a multi-step form with fieldsets for each section
 - Create a form with datalist autocomplete

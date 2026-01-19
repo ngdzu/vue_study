@@ -374,6 +374,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="phoneInputMode">Phone with inputmode + pattern</label>
+                        <input id="phoneInputMode" type="tel" inputmode="tel" pattern="\+?[0-9\-\s()]{7,20}"
+                            title="Phone number: digits, spaces, dashes, parentheses" placeholder="+1 555-123-4567">
+                        <small style="color: #666; display: block; margin-top: 0.35rem;">Mobile devices show a phone
+                            keypad; pattern gives validation hint.</small>
+                    </div>
+
+                    <div class="form-group">
                         <label for="searchInput">Search Input</label>
                         <input id="searchInput" type="search" placeholder="Search...">
                     </div>
@@ -682,6 +690,84 @@
                     </div>
                 </form>
             </div>
+
+            <!-- 11. Form Events -->
+            <div class="section">
+                <h2>11. Form Events Demo</h2>
+                <div class="demo-note">
+                    <strong>🎯 Try it:</strong> Interact with the input to see different events firing in real-time!
+                </div>
+                <form id="eventsForm">
+                    <div class="form-group">
+                        <label for="eventInput">Type, focus, blur to trigger events</label>
+                        <input id="eventInput" type="text" placeholder="Try typing, focusing, selecting...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventTextarea">Copy, paste, cut to see clipboard events</label>
+                        <textarea id="eventTextarea" rows="3" placeholder="Try copy, paste, cut..."></textarea>
+                    </div>
+
+                    <button type="submit">Submit (triggers submit event)</button>
+                    <button type="reset">Reset (triggers reset event)</button>
+                </form>
+                <div id="eventsLog" class="output" style="display: block; max-height: 300px;">
+                    <div style="color: #666; font-style: italic;">Event log will appear here...</div>
+                </div>
+            </div>
+
+            <!-- 12. Smart Submit Button -->
+            <div class="section">
+                <h2>12. Smart Submit Button</h2>
+                <div class="demo-note">
+                    <strong>🔐 Try it:</strong> Fill in the fields with valid data. The submit button enables only when
+                    all required fields match their patterns!
+                </div>
+                <form id="smartForm">
+                    <div class="form-group">
+                        <label for="smartName">Full Name (required)</label>
+                        <input id="smartName" type="text" name="name" placeholder="John Doe" required>
+                        <small id="nameError"
+                            style="color: #ef5350; display: none; font-size: 0.85rem; margin-top: 0.25rem;"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="smartEmail">Email (required, must be valid)</label>
+                        <input id="smartEmail" type="email" name="email" placeholder="user@example.com" required>
+                        <small id="emailError"
+                            style="color: #ef5350; display: none; font-size: 0.85rem; margin-top: 0.25rem;"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="smartPhone">Phone (required, pattern: +1-555-123-4567)</label>
+                        <input id="smartPhone" type="text" name="phone" inputmode="tel"
+                            pattern="\+1-[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="+1-555-123-4567" required
+                            title="Format: +1-XXX-XXX-XXXX">
+                        <small id="phoneError"
+                            style="color: #ef5350; display: none; font-size: 0.85rem; margin-top: 0.25rem;"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="smartPassword">Password (required, min 8 chars)</label>
+                        <input id="smartPassword" type="password" name="password" placeholder="Min 8 characters"
+                            minlength="8" required>
+                        <small id="passwordError"
+                            style="color: #ef5350; display: none; font-size: 0.85rem; margin-top: 0.25rem;"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-item">
+                            <input id="smartAgree" type="checkbox" name="agree" required>
+                            <label for="smartAgree">I agree to the terms (required)</label>
+                        </div>
+                        <small id="agreeError"
+                            style="color: #ef5350; display: none; font-size: 0.85rem; margin-top: 0.25rem;"></small>
+                    </div>
+
+                    <button id="smartSubmit" type="submit" disabled>Submit (disabled until form is valid)</button>
+                </form>
+                <div id="smartOutput" class="output" style="display: none;"></div>
+            </div>
         </div>
     </div>
 
@@ -807,6 +893,158 @@
 
             document.getElementById('fileOutput').style.display = 'block';
             document.getElementById('fileOutput').textContent = JSON.stringify(output, null, 2);
+        });
+
+        // Form 8: Events Demo
+        const eventInput = document.getElementById('eventInput');
+        const eventTextarea = document.getElementById('eventTextarea');
+        const eventsLog = document.getElementById('eventsLog');
+        const eventsForm = document.getElementById('eventsForm');
+        let eventCount = 0;
+
+        function logEvent(eventName, detail = '') {
+            eventCount++;
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.style.marginBottom = '0.5rem';
+            logEntry.style.paddingBottom = '0.5rem';
+            logEntry.style.borderBottom = '1px solid #e0e0e0';
+            logEntry.innerHTML = `<strong style="color: #667eea;">${eventCount}. ${eventName}</strong> <span style="color: #999;">${timestamp}</span>${detail ? '<br><span style="color: #666; font-size: 0.85rem;">' + detail + '</span>' : ''}`;
+
+            if (eventsLog.firstChild?.style?.fontStyle === 'italic') {
+                eventsLog.innerHTML = '';
+            }
+
+            eventsLog.insertBefore(logEntry, eventsLog.firstChild);
+
+            // Keep only last 15 events
+            while (eventsLog.children.length > 15) {
+                eventsLog.removeChild(eventsLog.lastChild);
+            }
+        }
+
+        // Input events
+        eventInput.addEventListener('input', (e) => {
+            logEvent('input', `Value: "${e.target.value}"`);
+        });
+
+        eventInput.addEventListener('change', (e) => {
+            logEvent('change', `Final value: "${e.target.value}"`);
+        });
+
+        eventInput.addEventListener('focus', () => {
+            logEvent('focus', 'Input received focus');
+        });
+
+        eventInput.addEventListener('blur', () => {
+            logEvent('blur', 'Input lost focus');
+        });
+
+        eventInput.addEventListener('keydown', (e) => {
+            logEvent('keydown', `Key: ${e.key}`);
+        });
+
+        eventInput.addEventListener('keyup', (e) => {
+            logEvent('keyup', `Key: ${e.key}`);
+        });
+
+        eventInput.addEventListener('select', () => {
+            const selectedText = eventInput.value.substring(eventInput.selectionStart, eventInput.selectionEnd);
+            logEvent('select', `Selected: "${selectedText}"`);
+        });
+
+        // Clipboard events for textarea
+        eventTextarea.addEventListener('cut', (e) => {
+            logEvent('cut', 'Content cut to clipboard');
+        });
+
+        eventTextarea.addEventListener('copy', (e) => {
+            logEvent('copy', 'Content copied to clipboard');
+        });
+
+        eventTextarea.addEventListener('paste', (e) => {
+            logEvent('paste', 'Content pasted from clipboard');
+        });
+
+        eventTextarea.addEventListener('input', (e) => {
+            logEvent('input (textarea)', `Length: ${e.target.value.length} chars`);
+        });
+
+        // Form events
+        eventsForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            logEvent('submit', 'Form submitted (prevented default)');
+        });
+
+        eventsForm.addEventListener('reset', (e) => {
+            logEvent('reset', 'Form reset');
+            setTimeout(() => {
+                eventCount = 0;
+                eventsLog.innerHTML = '<div style="color: #666; font-style: italic;">Event log cleared...</div>';
+            }, 500);
+        });
+
+        // Form 9: Smart Submit Button
+        const smartForm = document.getElementById('smartForm');
+        const smartSubmit = document.getElementById('smartSubmit');
+
+        // Map of field IDs to error message element IDs
+        const errorElements = {
+            smartName: 'nameError',
+            smartEmail: 'emailError',
+            smartPhone: 'phoneError',
+            smartPassword: 'passwordError',
+            smartAgree: 'agreeError'
+        };
+
+        function updateSubmitButton() {
+            // Check if form is valid
+            smartSubmit.disabled = !smartForm.checkValidity();
+
+            // Update validation messages for each field
+            Object.entries(errorElements).forEach(([fieldId, errorId]) => {
+                const field = document.getElementById(fieldId);
+                const errorEl = document.getElementById(errorId);
+
+                if (field.validity.valid) {
+                    errorEl.style.display = 'none';
+                    errorEl.textContent = '';
+                } else if (field.value !== '' || field.value === '' && field.required) {
+                    errorEl.style.display = 'block';
+                    errorEl.textContent = field.validationMessage;
+                } else {
+                    errorEl.style.display = 'none';
+                }
+            });
+        }
+
+        // Listen to all input changes
+        smartForm.addEventListener('input', updateSubmitButton);
+        smartForm.addEventListener('change', updateSubmitButton);
+
+        // Handle form submission
+        smartForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(smartForm);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                password: '●'.repeat(formData.get('password').length),
+                termsAgreed: formData.get('agree') === 'on'
+            };
+
+            document.getElementById('smartOutput').style.display = 'block';
+            document.getElementById('smartOutput').innerHTML = `
+                <strong style="color: #66bb6a;">✓ Form submitted successfully!</strong><br><br>
+                <pre>${JSON.stringify(data, null, 2)}</pre>
+            `;
+        });
+
+        // Handle form reset
+        smartForm.addEventListener('reset', () => {
+            setTimeout(updateSubmitButton, 0);
+            document.getElementById('smartOutput').style.display = 'none';
         });
     </script>
 </body>
