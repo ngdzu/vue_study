@@ -8,6 +8,20 @@ HTML forms are the foundation of web interaction. Understanding them deeply enab
 
 **[Open Interactive Demo](./demos/index.html)** — See all examples from this lesson in action! Try different input types, validation, checkboxes, dropdowns, and more in your browser.
 
+## 📑 Table of Contents
+
+- [1) Form Structure & Semantics](#1-form-structure--semantics)
+- [2) Input Types](#2-input-types)
+- [3) Validation Attributes](#3-validation-attributes)
+- [4) Form Submission & FormData](#4-form-submission--formdata)
+- [5) Accessibility (a11y)](#5-accessibility-a11y)
+- [6) Form Groups with Fieldset](#6-form-groups-with-fieldset)
+- [7) Select and Datalist](#7-select-and-datalist)
+- [8) Best Practices](#8-best-practices)
+- [9) Common Patterns in Vue](#9-common-patterns-in-vue)
+- [10) Form Events](#10-form-events)
+- [11) Practice Ideas](#11-practice-ideas)
+
 ## 1) Form Structure & Semantics
 
 ### 1.1 Basic form with semantic elements
