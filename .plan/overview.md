@@ -38,6 +38,7 @@ Master the core concepts of Vue 3 reactivity and templating.
 - **Sample Project**: Real-time form validator
 - **Practice**: Build a password strength meter with live feedback
 - **Assessment**: Quiz + validation against test cases
+- Materials: [module-1/lesson-1-2/README.md](module-1/lesson-1-2/README.md)
 
 #### Lesson 1.3: Conditional Rendering & List Rendering
 - **Concept**: `v-if`, `v-show`, `v-for`, key management
@@ -238,10 +239,11 @@ Master professional form handling and validation.
 
 #### Lesson 5.2: Advanced Validation
 - **Concept**: Client-side validation, custom validators, async validation
-- **Key Topics**: Real-time validation, error messages, validation libraries
+- **Key Topics**: Real-time validation, error messages, validation libraries (VeeValidate intro)
 - **Sample Project**: Form with email uniqueness check (async validation)
 - **Practice**: Build a registration form with password strength validation
 - **Assessment**: Validate complex scenarios
+- **Note**: See Appendix A.3 for comprehensive VeeValidate guide and production patterns
 
 #### Lesson 5.3: Form Composables & Reusability
 - **Concept**: Extracting form logic into composables
@@ -430,6 +432,62 @@ Professional patterns and deployment readiness.
 - Production deployment
 - Monitoring and error tracking
 - Documentation and CI/CD pipeline
+
+#### Lesson 8.9: Server-Side Rendering & Hydration
+- **Concept**: SSR with Vue 3, initial HTML render, client hydration
+- **Key Topics**: `createSSRApp`, `@vue/server-renderer`, `onServerPrefetch`, `useSSRContext`, router history modes, Pinia state serialization/hydration, SSR-safe code (no direct DOM access)
+- **Sample Project**: Minimal Vite SSR app with server-rendered route and hydrated Pinia state
+- **Practice**: Implement async data prefetch and transfer initial state to client
+- **Assessment**: Validate hydration correctness and SSR-safe patterns
+- Materials: [module-8/lesson-8-9/README.md](module-8/lesson-8-9/README.md)
+
+---
+
+## MODULE APPENDIX: JavaScript/TypeScript Foundations
+Quick reference and deep dives into essential JavaScript and TypeScript concepts used throughout the course.
+
+### Appendix A.1: Functional Programming Essentials
+- **Concept**: Pure functions, immutability, functional composition
+- **Key Topics**: Higher-order functions, array methods, function composition
+- **Array Methods**: `map()`, `filter()`, `reduce()`, `flatMap()`, `find()`, `some()`, `every()`
+- **Key Patterns**: Chaining, accumulation, immutable transformations
+- **Sample Project**: Transform and filter data with functional methods
+- **Practice**: Refactor imperative loops to functional style
+- **Assessment**: Quiz (20 questions) + practical exercises
+- Materials: [module-appendix/appendix-a1-functional-programming/README.md](module-appendix/appendix-a1-functional-programming/README.md)
+
+---
+
+### Appendix A.2: Object & Array Manipulation
+- **Concept**: Spreading, destructuring, cloning, merging
+- **Key Topics**: Spread operator, rest parameters, object/array cloning
+- **Examples**: Coming in next update
+
+### Appendix A.3: VeeValidate for Professional Form Validation
+- **Concept**: Schema-based validation, form state management, composables
+- **Key Topics**: Yup/Zod integration, field-level validation, form-level validation, error handling
+- **Sample Project**: Multi-step form with progressive validation
+- **Practice**: Migrate custom validators to VeeValidate
+- **Assessment**: Build production-ready validated form
+- **Materials**: [module-appendix/appendix-a3-veevalidate/README.md](module-appendix/appendix-a3-veevalidate/README.md)
+
+### Appendix A.4: HTML Forms Fundamentals
+- **Concept**: Form structure, input types, validation attributes, accessibility
+- **Key Topics**: Form elements, semantic HTML, native validation, best practices
+- **Sample Project**: Multi-field form with proper accessibility
+- **Practice**: Build forms with semantic HTML and ARIA labels
+- **Assessment**: Create accessible, validated form
+- **Materials**: [module-appendix/appendix-a4-html-forms/README.md](module-appendix/appendix-a4-html-forms/README.md)
+
+### Appendix A.5: Async/Await & Promises
+- **Concept**: Asynchronous JavaScript, Promise chains, error handling
+- **Key Topics**: Promise states, async/await syntax, error handling patterns
+- **Examples**: Coming in next update
+
+### Appendix A.5: Modern TypeScript Patterns
+- **Concept**: Types, interfaces, generics, utility types
+- **Key Topics**: Type safety, generic constraints, mapped types
+- **Examples**: Coming in next update
 
 ---
 
