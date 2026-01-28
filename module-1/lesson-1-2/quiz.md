@@ -75,3 +75,5 @@ Answer these questions after completing the lesson and exercises.
     <div v-if="isVisible">Content A</div>
     <div v-show="isVisible">Content B</div>
     ```
+
+31) What is the default `deep` property value for watching a specific object's property? What is the default `deep` property value for watching a whole object?

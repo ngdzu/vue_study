@@ -327,10 +327,15 @@ watch(() => state.count, (newCount) => {
 ```ts
 watch(source, callback, {
   immediate: true,  // Run callback immediately on mount
-  deep: true,       // Watch nested properties (default for reactive)
+  deep: true,       // Watch nested properties (implicit for reactive objects)
   flush: 'post'     // Callback timing: 'pre' | 'post' | 'sync'
 })
 ```
+
+**Important deep behavior**:
+- When watching a **reactive object directly** (`watch(state, ...)`): Deep watching is **implicit** — nested changes trigger the callback
+- When watching via a **getter** (`watch(() => state.user, ...)`): **NOT deep by default** — only fires if the object reference changes
+- Use `deep: true` to override default behavior
 
 **Example with options**:
 ```ts

@@ -244,3 +244,47 @@
     - `v-show` div: CSS changed to `display: block` (or original display value)
     
     DOM operation difference: v-if adds element (expensive), v-show just changes CSS property (cheap).
+
+31) **Default `deep` property value for watch()**:
+    
+    **Watching a specific primitive property** (via getter function):
+    ```ts
+    watch(() => state.user.name, callback) // name is a string
+    ```
+    Default: Not applicable — you're already narrowing to a primitive, so changes to `name` always trigger.
+    
+    **Watching a specific object/array property** (via getter function):
+    ```ts
+    const state = reactive({ user: { name: 'Alice', age: 30 } })
+    watch(() => state.user, callback) // Default: NOT deep
+    ```
+    Default: **`deep: false` (implicit)** — only detects if `state.user` object reference is completely replaced. Nested changes (e.g., `state.user.age = 31`) won't trigger the callback. To watch nested changes, explicitly set `deep: true`:
+    ```ts
+    watch(() => state.user, callback, { deep: true }) // ✅ Now catches nested age changes
+    ```
+    
+    **Watching a whole reactive object directly**:
+    ```ts
+    const state = reactive({ count: 0, name: 'Alice' })
+    watch(state, callback) // Default: implicitly DEEP
+    ```
+    Default: **`deep: true` (implicit)** — Vue automatically creates a deep watcher. ALL nested mutations trigger the callback:
+    ```ts
+    state.count++ // ✅ Triggers
+    state.name = 'Bob' // ✅ Triggers
+    ```
+    
+    **Watching a ref wrapping an object**:
+    ```ts
+    const state = ref({ count: 0, name: 'Alice' })
+    watch(state, callback) // Default: NOT deep
+    ```
+    Default: **`deep: false` (implicit)** — only detects if the entire object reference changes. Nested mutations won't trigger. Set `deep: true` if needed:
+    ```ts
+    watch(state, callback, { deep: true }) // ✅ Now watches nested changes
+    ```
+    
+    **Summary**: 
+    - **`watch(reactiveObject, ...)`**: Implicitly **deep** ✅ (watches nested changes automatically)
+    - **`watch(() => getter, ...)`**: Implicitly **NOT deep** (only surface-level or object reference changes)
+    - **`watch(ref, ...)`**: Implicitly **NOT deep** (unless object inside the ref)
