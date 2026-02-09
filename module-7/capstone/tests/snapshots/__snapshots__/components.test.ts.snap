@@ -1,0 +1,53 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Snapshot Tests > TaskForm snapshot 1`] = `
+"<form data-v-5fa3a062=\\"\\" class=\\"task-form\\">
+  <div data-v-5fa3a062=\\"\\" class=\\"form-group\\"><label data-v-5fa3a062=\\"\\" for=\\"title\\">Task Title *</label><input data-v-5fa3a062=\\"\\" id=\\"title\\" type=\\"text\\" placeholder=\\"Enter task title\\" class=\\"form-input\\" required=\\"\\">
+    <!--v-if-->
+  </div>
+  <div data-v-5fa3a062=\\"\\" class=\\"form-group\\"><label data-v-5fa3a062=\\"\\" for=\\"category\\">Category *</label><input data-v-5fa3a062=\\"\\" id=\\"category\\" type=\\"text\\" placeholder=\\"e.g., Work, Personal, Learning\\" class=\\"form-input\\" required=\\"\\">
+    <!--v-if-->
+  </div>
+  <div data-v-5fa3a062=\\"\\" class=\\"form-group\\"><label data-v-5fa3a062=\\"\\" for=\\"description\\">Description</label><textarea data-v-5fa3a062=\\"\\" id=\\"description\\" placeholder=\\"Enter task description (optional)\\" class=\\"form-input\\" rows=\\"3\\"></textarea></div>
+  <div data-v-5fa3a062=\\"\\" class=\\"form-group\\"><label data-v-5fa3a062=\\"\\" for=\\"duration\\">Estimated Duration (seconds) *</label><input data-v-5fa3a062=\\"\\" id=\\"duration\\" type=\\"number\\" min=\\"0\\" placeholder=\\"3600 (1 hour)\\" class=\\"form-input\\" required=\\"\\">
+    <!--v-if-->
+  </div>
+  <div data-v-5fa3a062=\\"\\" class=\\"form-actions\\"><button data-v-5fa3a062=\\"\\" type=\\"submit\\" class=\\"btn btn-primary\\">Create Task</button>
+    <!--v-if-->
+  </div>
+</form>"
+`;
+
+exports[`Snapshot Tests > TaskItem snapshot 1`] = `
+"<div data-v-8ef239d9=\\"\\" class=\\"task-item\\">
+  <div data-v-8ef239d9=\\"\\" class=\\"task-content\\"><input data-v-8ef239d9=\\"\\" type=\\"checkbox\\" class=\\"task-checkbox\\" aria-label=\\"Toggle task: Test Task\\">
+    <div data-v-8ef239d9=\\"\\" class=\\"task-info\\">
+      <h4 data-v-8ef239d9=\\"\\" class=\\"task-title\\">Test Task</h4>
+      <p data-v-8ef239d9=\\"\\" class=\\"task-description\\">Test</p>
+      <div data-v-8ef239d9=\\"\\" class=\\"task-meta\\"><span data-v-8ef239d9=\\"\\" class=\\"category-badge\\">Work</span><span data-v-8ef239d9=\\"\\" class=\\"duration-badge\\">⏱ 00:10:00</span></div>
+    </div>
+  </div>
+  <div data-v-8ef239d9=\\"\\" class=\\"task-actions\\"><button data-v-8ef239d9=\\"\\" class=\\"btn-icon\\" title=\\"Edit task\\"> ✎ </button><button data-v-8ef239d9=\\"\\" class=\\"btn-icon btn-delete\\" title=\\"Delete task\\"> ✕ </button></div>
+</div>"
+`;
+
+exports[`Snapshot Tests > TaskStats snapshot 1`] = `
+"<div data-v-33e29017=\\"\\" class=\\"task-stats\\">
+  <div data-v-33e29017=\\"\\" class=\\"stat-card\\">
+    <div data-v-33e29017=\\"\\" class=\\"stat-label\\">Total Tasks</div>
+    <div data-v-33e29017=\\"\\" class=\\"stat-value\\">1</div>
+  </div>
+  <div data-v-33e29017=\\"\\" class=\\"stat-card\\">
+    <div data-v-33e29017=\\"\\" class=\\"stat-label\\">Completed</div>
+    <div data-v-33e29017=\\"\\" class=\\"stat-value\\">0</div>
+  </div>
+  <div data-v-33e29017=\\"\\" class=\\"stat-card\\">
+    <div data-v-33e29017=\\"\\" class=\\"stat-label\\">Active</div>
+    <div data-v-33e29017=\\"\\" class=\\"stat-value\\">1</div>
+  </div>
+  <div data-v-33e29017=\\"\\" class=\\"stat-card\\">
+    <div data-v-33e29017=\\"\\" class=\\"stat-label\\">Total Time</div>
+    <div data-v-33e29017=\\"\\" class=\\"stat-value\\">00:00:00</div>
+  </div>
+</div>"
+`;
